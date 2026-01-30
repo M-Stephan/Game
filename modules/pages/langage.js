@@ -1,7 +1,7 @@
-import { config } from '../script.js';
+import { config } from '../../script.js';
 import { setMainMenu } from './main-menu.js';
-import { getElemById, log  } from './wrappers.js';
-import { locale } from './locales.js';
+import { getElemById, log  } from '../wrappers/wrappers.js';
+import { locale } from '../locales/locales.js';
 
 // Get the 'game-screen' div content
 let game_screen = getElemById('game-screen');

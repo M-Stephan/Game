@@ -1,7 +1,7 @@
 import { getLangage, setLangagePage } from "./langage.js";
-import { getTheme } from "./theme.js";
+import { getTheme } from "../wrappers/theme.js";
 import { setMainMenu } from './main-menu.js';
-import { getElemById, log } from "./wrappers.js";
+import { getElemById, log } from "../wrappers/wrappers.js";
 
 let theme_dark = getTheme();
 

@@ -1,5 +1,5 @@
 
-import { config } from '../script.js';
+import { config } from '../../script.js';
 
 // GetElementById
 export function getElemById(id) {

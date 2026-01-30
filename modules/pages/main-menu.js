@@ -1,4 +1,4 @@
-import { getElemById, log } from './wrappers.js';
+import { getElemById, log } from '../wrappers/wrappers.js';
 import { getLangage } from './langage.js';
 import { setParametersPage } from './parameters.js';
 

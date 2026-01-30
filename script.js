@@ -1,8 +1,8 @@
-import { setLangagePage, getLangage } from './modules/langage.js';
-import { locale } from './modules/locales.js';
-import { setMainMenu } from './modules/main-menu.js';
-import { toggleTheme } from './modules/theme.js';
-import { log } from './modules/wrappers.js';
+import { setLangagePage, getLangage } from './modules/pages/langage.js';
+import { locale } from './modules/locales/locales.js';
+import { setMainMenu } from './modules/pages/main-menu.js';
+import { toggleTheme } from './modules/wrappers/theme.js';
+import { log } from './modules/wrappers/wrappers.js';
 
 
 export let config = {};
