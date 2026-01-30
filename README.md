@@ -21,6 +21,26 @@
 - Page menu principal: `setMainMenu()` *from modules/main-menu.js*
 - Page paramètres: `setParametersPage()` *from modules/parameters.js*
 - Page choix de language: `setLangagePage()` *from modules/langage.js*
+
 ### Wrappers
 - HTML get: *document.getElementById(id)* → `getElemById(id)` *from modules/wrappers.js*
 - Log / Debug: `log(type, message)` *(type: "info", "error", "success")* *from modules/wrappers.js*
+
+## Structure de projet
+```
+game/
+├─ modules/
+|   ├─ locales/
+|   |   └─ locales.js 
+|   ├─ pages/
+|   |   ├─ langage.js
+|   |   ├─ main-menu.js
+|   |   └─ parameters.js
+|   └─ wrappers/
+|       ├─ theme.js
+|       └─ wrappers.js
+├─ index.html
+├─ script.js
+├─ style.css
+└─ README.md
+```
