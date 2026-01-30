@@ -1,32 +1,45 @@
-# Jeu non défini
-## Auteur:
-- Stephan.M (Wegaso Studio)
+# Undefined Game
 
-## Avancement
-- Creation tu projet et structure (html, css, js *type module*)
-- Tests Live Server (VSCode)
-- Creation d'un systeme de configuration
-- Creation d'un systeme de Debug/Log (3 type: info, suceess, error)
-- Creation d'un Wrapper pour document.getelementById()
-- Creation d'un fichier locales.js (contient les traduction a remplir dynamiquement en fonction du language défini)
-- Creation d'un menu principal (seul le bouton paramètre foncitonne actuellement les autres renvoie un log)
-- Selection de language (menu principal si déjà définit)
-- Creation theme (dark-light)
-- Creation de la page de paramètres et fonctionnalité des boutons theme et language
-- Enregistrement temporaire en local storage. 
+## Author:
 
-## Fonctions réutilisables:
+* Stephan.M (Wegaso Studio)
 
-### Pages display
-- Page menu principal: `setMainMenu()` *from modules/main-menu.js*
-- Page paramètres: `setParametersPage()` *from modules/parameters.js*
-- Page choix de language: `setLangagePage()` *from modules/langage.js*
+## Progress
+
+* Project and structure creation (HTML, CSS, JS *module type*)
+* Live Server tests (VSCode)
+* Creation of a configuration system
+* Creation of a Debug/Log system (3 types: info, success, error)
+* Creation of a wrapper for `document.getElementById()`
+* Creation of a `locales.js` file (contains translations to be dynamically filled based on the defined language)
+* Creation of a main menu (only the settings button works currently, the others log a message)
+* Language selection (main menu if already defined)
+* Theme creation (dark-light)
+* Creation of the settings page and button functionality for theme and language
+* Temporary storage in local storage
+* Project structure refactor
+* Complete documentation refactor in each file
+* Variable and file naming refactor
+* Refactor of `locales.js` + addition of new locales for the `new-game.js` page
+* Creation of `new-game.js` page and its implementation
+* Implementation of player data storage
+* Create README-FR.md and translate original README.md in english
+
+## Reusable functions:
+
+### Page display
+
+* Main menu page: `setMainMenu()` *from modules/main-menu.js*
+* Settings page: `setSettingsPage()` *from modules/settings.js*
+* Language selection page: `setLanguagePage()` *from modules/langage.js*
 
 ### Wrappers
-- HTML get: *document.getElementById(id)* → `getElemById(id)` *from modules/wrappers.js*
-- Log / Debug: `log(type, message)` *(type: "info", "error", "success")* *from modules/wrappers.js*
 
-## Structure de projet
+* HTML get: *document.getElementById(id)* → `getElemById(id)` *from modules/wrappers.js*
+* Log / Debug: `log(type, message)` *(type: "info", "error", "success")* *from modules/wrappers.js*
+
+## Project structure
+
 ```
 game/
 ├─ modules/
@@ -35,12 +48,14 @@ game/
 |   ├─ pages/
 |   |   ├─ langage.js
 |   |   ├─ main-menu.js
-|   |   └─ parameters.js
+|   |   ├─ new-game.js
+|   |   └─ settings.js
 |   └─ wrappers/
 |       ├─ theme.js
 |       └─ wrappers.js
 ├─ index.html
 ├─ script.js
 ├─ style.css
+├─ README-FR.md
 └─ README.md
 ```

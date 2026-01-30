@@ -4,6 +4,7 @@
   --btn-bgcolor: #474747;
   --btn-textcolor: #e2e2e2;
   --btn-hover: 0px 0px 15px 5px #616161;
+  --new-game-submit-color: #00c010;
 }
 
 body.theme-light {
@@ -64,4 +65,37 @@ button {
 
 button:hover {
   box-shadow: var(--btn-hover);
+}
+
+#new-game-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  align-items: center;
+  place-items: center;
+}
+
+#new-game-submit {
+  width: 110px;
+  height: 50px;
+  margin: 20px;
+  background-color: #00c010;
+  color: var(--btn-textcolor);
+  border: none;
+  border-radius: 5px;
+}
+
+#new-game-submit:hover {
+  box-shadow: var(--btn-hover);
+}
+
+.return-btn {
+  padding: 5px;
+  margin: 20px;
+  background-color: #ad0000;
+  color: var(--btn-textcolor);
+  border: none;
+  border-radius: 5px;
+
 }

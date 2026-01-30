@@ -1,14 +1,17 @@
-
+// Import modules
 import { config } from '../../script.js';
 
-// GetElementById
+// Function wrapper for document.getElementById()
 export function getElemById(id) {
+    // Return the method with the id parameter
     return document.getElementById(id);
 };
 
-// Print system
+// Function wrapper for console.log()
 export function log(type, message) {
+    // Only if config.debug = true into script.js
     if (config.debug) {
+        // Builds the log based on the defined type or default if type parameter is not defined
         switch (type) {
             case 'info':
                 console.log("%c[WGS INFO] ", "color: orange;", message);

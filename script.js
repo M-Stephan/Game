@@ -1,4 +1,4 @@
-import { setLangagePage, getLangage } from './modules/pages/langage.js';
+import { setLanguagePage, getSavedLanguage } from './modules/pages/language.js';
 import { locale } from './modules/locales/locales.js';
 import { setMainMenu } from './modules/pages/main-menu.js';
 import { toggleTheme } from './modules/wrappers/theme.js';
@@ -12,25 +12,23 @@ export let config = {};
 // Debug active
 config.debug = true;
 
-// Langage by default
-config.defaultLangage = locale.fr;
+// Language by default
+config.defaultLanguage = locale.fr; // Possible choices: locale.de, locale.es, locale.en, locale.fr
 
 /*****************************************/
 
 // display the last theme or default (dark)
 toggleTheme();
 
-// get the last langage or defaut
-let lang = getLangage();
+// get the last language or defaut
+let lang = getSavedLanguage();
 
 // Start the first page don't touch
-if (lang !== "") {
+if (lang) {
     setMainMenu();
 } else {
-    setLangagePage(lang);
+    setLanguagePage();
 };
-
 
 // Log local storage
 log("info", localStorage);
-
