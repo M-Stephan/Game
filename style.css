@@ -1,11 +1,17 @@
 :root {
   --bg-body: #272727;
   --main-color: #e2e2e2;
+  --btn-bgcolor: #474747;
+  --btn-textcolor: #e2e2e2;
+  --btn-hover: 0px 0px 15px 5px #616161;
 }
 
 body.theme-light {
-  --bg-body: #e2e2e2;
+  --bg-body: #a2f3ff;
   --main-color: #272727;
+  --btn-bgcolor: #0096f4;
+  --btn-textcolor: #e2e2e2;
+  --btn-hover: 0px 0px 15px 5px #1d009f63;
 }
 
 body {
@@ -50,4 +56,12 @@ button {
   width: 110px;
   height: 50px;
   margin: 20px;
+  background-color: var(--btn-bgcolor);
+  color: var(--btn-textcolor);
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  box-shadow: var(--btn-hover);
 }
