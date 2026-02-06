@@ -13,7 +13,7 @@ export let config = {};
 config.debug = true;
 
 // Language by default
-config.defaultLanguage = locale.fr; // Possible choices: locale.de, locale.es, locale.en, locale.fr
+config.defaultLanguage = locale.en; // Possible choices: locale.de, locale.es, locale.en, locale.fr
 
 /*****************************************/
 

@@ -1,7 +1,9 @@
 // Import Locales
+import { setPlayerData, testGetSavedPlayerData, changeStats } from '../services/player-crud.js';
 import { getElemById, log } from '../wrappers/wrappers.js';
 import { getLanguage } from './language.js';
 import { setMainMenu } from './main-menu.js';
+import { config } from '../../script.js';
 
 // Get 'game-screen' div
 const game_screen = getElemById('game-screen');
@@ -50,22 +52,45 @@ export function setNewGamePage() {
 
         // Debug
         log("info", `\nGamerTag: ${gamertag.value}\nFirstname: ${firstname.value}\nLastname: ${lastname.value}\n`);
-        
+
+
         // Create player datas for local storage
-        const player_data = JSON.stringify({
-            gamertag: gamertag.value,
-            firstname: firstname.value,
-            lastname: lastname.value
-        });
+        const player_data = {          
+            player: {
+                gamertag: gamertag.value,
+                firstname: firstname.value,
+                lastname: lastname.value
+            },
+            stats: {
+                hunger: 100,
+                thirst: 100,
+                hp: 100,
+                level: 1
+            }          
+        };
 
         // Save de player data into local storage
-        localStorage.setItem("player-data", player_data);
-
+        setPlayerData(player_data);
+        
         // Debug
-        log("success", `The player data has been successfully saved into local storage.\nobject:\n${player_data}`);
+        if (config.debug) {
+            changeStats("decrease", "hunger", 20);
+            testGetSavedPlayerData();
+        };
+        
+        // Debug
+        if (config.debug) {
+            changeStats("decrease", "hp", 10);
+            testGetSavedPlayerData();
+        };
 
-        // Start the game
-        // startGame() Will be created
+        
+        // Debug
+        if (config.debug) {
+            changeStats("increase", "hp", 20);
+            testGetSavedPlayerData();
+        };
+        // startGame(savedPlayerData) Will be created
     });
 
     // Evet to return to the main menu page

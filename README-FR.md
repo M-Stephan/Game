@@ -26,14 +26,23 @@
 ## Fonctions réutilisables:
 
 ### Pages display
-- Page menu principal: `setMainMenu()` *from modules/main-menu.js*
-- Page paramètres: `setSettingsPage()` *from modules/settings.js*
-- Page choix de language: `setLanguagePage()` *from modules/langage.js*
+- Page menu principal: `setMainMenu()` *from modules/pages/main-menu.js*
+- Page paramètres: `setSettingsPage()` *from modules/pages/settings.js*
+- Page choix de language: `setLanguagePage()` *from modules/pages/langage.js*
 
 ### Wrappers
-- HTML get: *document.getElementById(id)* → `getElemById(id)` *from modules/wrappers.js*
-- Log / Debug: `log(type, message)` *(type: "info", "error", "success")* *from modules/wrappers.js*
+- HTML get: *document.getElementById(id)* → `getElemById(id)` *from modules/wrappers/wrappers.js*
+- Log / Debug: `log(type, message)` *(type: "info", "error", "success")* *from modules/wrappers/wrappers.js*
 
+## CRUD Player data
+- Pour recevoir les données joueurs `const savedPlayerData = localStorage.getItem("player-data");`
+
+- GET: `getPlayerData()` *from modules/game-components/player.js*
+- CREATE/UPDATE: `setPlayerData(player_data)` *from modules/game-components/player.js*
+- DELETE: `deletePlayerData(saved_player_data)` *from modules/game-components/player.js*
+- GET GAMERTAG: `getPlayerGamertag()` *from modules/game-components/player.js*
+- GET FULL NAME: `getPlayerName()` *from modules/game-components/player.js*
+- GET ALL STATS: `getPlayersStats()` *from modules/game-components/player.js*
 ## Structure de projet
 ```
 game/
