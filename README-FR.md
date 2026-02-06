@@ -76,7 +76,8 @@ game/
 |   |   ├─ new-game.js
 |   |   └─ settings.js
 |   ├─ services/
-|   |   └─ player-crud.js 
+|   |   ├─ player-crud.js
+|   |   └─ player-inventory.js
 |   └─ wrappers/
 |       ├─ theme.js
 |       └─ wrappers.js

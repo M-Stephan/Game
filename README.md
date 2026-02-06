@@ -26,6 +26,7 @@
 - Creation of README-FR.md and translation of the original `README.md` in French
 - Creation of the folder `./modules/services/`
 - Creation and implementation of the file `./modules/services/player-crud.js`
+- Creation and implementation of the file `./modules/services/player-inventory.js`
 
 ## Reusable functions:
 
@@ -81,7 +82,8 @@ game/
 |   |   ├─ new-game.js
 |   |   └─ settings.js
 |   ├─ services/
-|   |   └─ player-crud.js
+|   |   ├─ player-crud.js
+|   |   └─ player-inventory.js
 |   └─ wrappers/
 |       ├─ theme.js
 |       └─ wrappers.js
