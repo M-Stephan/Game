@@ -22,6 +22,8 @@
 - Creation de la page new-game.js et son implémentation
 - Implémentation de l'enregistrement des données joueur
 - Création du README-FR.md et traduction du README.md original en anglais
+- Création du dossier ./modules/services/
+- Creation et implémentation du fichier ./modules/services/player-crud.js
 
 ## Fonctions réutilisables:
 
@@ -35,14 +37,33 @@
 - Log / Debug: `log(type, message)` *(type: "info", "error", "success")* *from modules/wrappers/wrappers.js*
 
 ## CRUD Player data
-- Pour recevoir les données joueurs `const savedPlayerData = localStorage.getItem("player-data");`
+- GET: `getPlayerData()` *from modules/services/player-crud.js*
+- DELETE: `deletePlayerData()` *from modules/services/player-crud.js*
+- CREATE/UPDATE: `setPlayerData(player_data)` *from modules/services/player-crud.js* *(player_data est un tableau js)*
+```js
+// exemple
+const player_data = {          
+    player: {
+        gamertag: gamertag.value,
+        firstname: firstname.value,
+        lastname: lastname.value
+    },
+    stats: {
+        hunger: 100,
+        thirst: 100,
+        hp: 100,
+        level: 1
+    }          
+};
+```
+- GET PLAYER INFO: `getPlayerInfo(info)` *from modules/services/player-crud.js*
+  - *remplir le paramètre info* → `gamertag, firstname, lastname, hunger; thirst, hp, level` 
 
-- GET: `getPlayerData()` *from modules/game-components/player.js*
-- CREATE/UPDATE: `setPlayerData(player_data)` *from modules/game-components/player.js*
-- DELETE: `deletePlayerData(saved_player_data)` *from modules/game-components/player.js*
-- GET GAMERTAG: `getPlayerGamertag()` *from modules/game-components/player.js*
-- GET FULL NAME: `getPlayerName()` *from modules/game-components/player.js*
-- GET ALL STATS: `getPlayersStats()` *from modules/game-components/player.js*
+- UPDATE PLAYER STATS: `changeStats(type, stats, amount)`*from modules/services/player-crud.js*
+  - *type: `"increase"/"decrease"`, stats: `hunger; thirst, hp`, amount: `chiffre/nombre positif`* (amount ne sera jamais plus grand que 100 ou plus petit que 0 )
+
+- UPDATE PLAYER LEVEL: `levelUp()` *from modules/services/player-crud.js*
+
 ## Structure de projet
 ```
 game/
@@ -54,6 +75,8 @@ game/
 |   |   ├─ main-menu.js
 |   |   ├─ new-game.js
 |   |   └─ settings.js
+|   ├─ services/
+|   |   └─ player-crud.js 
 |   └─ wrappers/
 |       ├─ theme.js
 |       └─ wrappers.js

@@ -4,7 +4,6 @@ import { setMainMenu } from './modules/pages/main-menu.js';
 import { toggleTheme } from './modules/wrappers/theme.js';
 import { log } from './modules/wrappers/wrappers.js';
 
-
 export let config = {};
 
 /************  CONFIGURATION  ************/
