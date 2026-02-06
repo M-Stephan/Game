@@ -3,7 +3,7 @@ import { setPlayerData, testGetSavedPlayerData, changeStats } from '../services/
 import { getElemById, log } from '../wrappers/wrappers.js';
 import { getLanguage } from './language.js';
 import { setMainMenu } from './main-menu.js';
-import { config } from '../../script.js';
+import { setDefaultPlayerInventory } from '../services/player-inventory.js';
 
 // Get 'game-screen' div
 const game_screen = getElemById('game-screen');
@@ -71,26 +71,8 @@ export function setNewGamePage() {
 
         // Save de player data into local storage
         setPlayerData(player_data);
-        
-        // Debug
-        if (config.debug) {
-            changeStats("decrease", "hunger", 20);
-            testGetSavedPlayerData();
-        };
-        
-        // Debug
-        if (config.debug) {
-            changeStats("decrease", "hp", 10);
-            testGetSavedPlayerData();
-        };
+        setDefaultPlayerInventory();
 
-        
-        // Debug
-        if (config.debug) {
-            changeStats("increase", "hp", 20);
-            testGetSavedPlayerData();
-        };
-        // startGame(savedPlayerData) Will be created
     });
 
     // Evet to return to the main menu page

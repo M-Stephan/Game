@@ -20,7 +20,8 @@ locale.fr = {
     gamertag_label: "Pseudo",
     firstname_label: "Prénom du personnage",
     lastname_label: "Nom du personnage",
-    start_new_game: "Commencer"
+    start_new_game: "Commencer",
+    delete_data: "Supprimer données joueur"
 };
 
 locale.en = {
@@ -43,7 +44,8 @@ locale.en = {
     gamertag_label: "GamerTag",
     firstname_label: "First Name",
     lastname_label: "Last Name",
-    start_new_game: "Start"
+    start_new_game: "Start",
+    delete_data: "Delete player data",
 };
 
 locale.es = {
@@ -66,7 +68,8 @@ locale.es = {
     gamertag_label: "Apodo",
     firstname_label: "Nombre del personaje",
     lastname_label: "Apellido del personaje",
-    start_new_game: "Comenzar"
+    start_new_game: "Comenzar",
+    delete_data: "Eliminar datos del jugador"
 };
 
 locale.de = {
@@ -89,5 +92,6 @@ locale.de = {
     gamertag_label: "GamerTag",
     firstname_label: "Vorname der Spielfigur",
     lastname_label: "Nachname der Spielfigur",
-    start_new_game: "Starten"
+    start_new_game: "Starten",
+    delete_data: "Spielerdaten löschen"
 };

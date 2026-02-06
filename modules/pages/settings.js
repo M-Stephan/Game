@@ -30,6 +30,7 @@ export function setSettingsPage() {
         <h2>${default_lang.parameter_title}</h2><br>
             <button id="language">${default_lang.language}</button><br>
             <button id="theme">${default_lang.theme} ${default_theme}</button><br>
+            <button class="return-btn" id="delete-data">${default_lang.delete_data}</button><br>
             <button class="return-btn" id="return-to-main-page">${default_lang.return_to_main_page}</button><br>
         `;
 
@@ -39,7 +40,8 @@ export function setSettingsPage() {
         const theme_btn = getElemById('theme');
         // Get the return button
         const return_btn = getElemById('return-to-main-page');
-
+        // Delete data
+        const delete_data_btn = getElemById('delete-data');
 
         // Event for language button
         language_btn.addEventListener("click", function() {
@@ -81,5 +83,14 @@ export function setSettingsPage() {
         return_btn.addEventListener("click", function() {
             // Show main menu page
             setMainMenu();
+        });
+
+        delete_data_btn.addEventListener("click", function() {
+            // Delete all storage
+            if (window.confirm("Etes vous sur de vouloir supprimer les données ?")) {
+                localStorage.clear();
+                setMainMenu();
+            }
+            
         });
 };
