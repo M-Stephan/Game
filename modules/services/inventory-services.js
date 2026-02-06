@@ -7,9 +7,9 @@ export function setDefaultPlayerInventory() {
         inventory: {
             slot0: { item: "bread", quantity: 2 },
             slot1: { item: "water", quantity: 2 },
-            slot2: { item: "medicine-kit", quantity: 2 }, 
+            slot2: { item: "medicine_kit", quantity: 2 }, 
             slot3: { item: "money", quantity: 1000 }, 
-            slot4: {}, 
+            slot4: {},
             slot5: {},
             slot6: {},
             slot7: {},

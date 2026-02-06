@@ -1,9 +1,9 @@
 // Import Locales
-import { setPlayerData, testGetSavedPlayerData, changeStats } from '../services/player-crud.js';
+import { setPlayerData } from '../services/player-service.js';
 import { getElemById, log } from '../wrappers/wrappers.js';
 import { getLanguage } from './language.js';
 import { setMainMenu } from './main-menu.js';
-import { setDefaultPlayerInventory } from '../services/player-inventory.js';
+import { setDefaultPlayerInventory } from '../services/inventory-services.js';
 
 // Get 'game-screen' div
 const game_screen = getElemById('game-screen');
