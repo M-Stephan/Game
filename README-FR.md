@@ -68,6 +68,10 @@ const player_data = {
 ```
 game/
 ├─ modules/
+|   ├─ data/
+|   |   ├─ crafts.js
+|   |   ├─ items.js
+|   |   └─ shops.js
 |   ├─ locales/
 |   |   └─ locales.js 
 |   ├─ pages/
