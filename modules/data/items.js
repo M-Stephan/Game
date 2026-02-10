@@ -12,13 +12,19 @@ export const existing_items = {
         stack: true
     },
 
+    "burger": {
+        label: "Burger",
+        consume: true,
+        stack: true
+    },
+
     "water": {
         label: "Bouteille d'eau",
         consume: true,
         stack: true
     },
 
-    "pick_axe": {
+    "pickaxe": {
         label: "Pioche",
         consume: false,
         stack: false
@@ -72,7 +78,29 @@ export const existing_items = {
         stack: true
     },
 
+    "wood": {
+        label: "Bois",
+        consume: false,
+        stack: true
+    },
 
-    
-} ;
+
+    "stone": {
+        label: "Pierre",
+        consume: false,
+        stack: true
+    },
+
+    "cotton": {
+        label: "Cotton",
+        consume: false,
+        stack: true
+    },
+
+    "fabric": {
+        label: "Tissu",
+        consume: false,
+        stack: true
+    }
+};
 
