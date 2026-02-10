@@ -1,7 +1,8 @@
 // Import modules
 import { config } from '../../script.js';
 import { setMainMenu } from './main-menu.js';
-import { getElemById, log  } from '../wrappers/wrappers.js';
+import { getElemById  } from '../wrappers/wrappers.js';
+import { log  } from '../wrappers/log.js';
 import { locale } from '../locales/locales.js';
 
 // Get the 'game-screen' div content

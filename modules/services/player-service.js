@@ -1,4 +1,4 @@
-import { log } from "../wrappers/wrappers.js";
+import { log } from "../wrappers/log.js";
 
 // READ
 export function getPlayerData() {

@@ -1,5 +1,6 @@
 // Import modules
-import { getElemById, log } from '../wrappers/wrappers.js';
+import { getElemById } from '../wrappers/wrappers.js';
+import { log  } from '../wrappers/log.js';
 import { getLanguage } from './language.js';
 import { setSettingsPage } from './settings.js';
 import { setNewGamePage } from './new-game.js';

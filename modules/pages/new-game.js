@@ -1,9 +1,11 @@
 // Import Locales
 import { setPlayerData } from '../services/player-service.js';
-import { getElemById, log } from '../wrappers/wrappers.js';
+import { getElemById } from '../wrappers/wrappers.js';
+import { log  } from '../wrappers/log.js';
 import { getLanguage } from './language.js';
 import { setMainMenu } from './main-menu.js';
 import { setDefaultPlayerInventory } from '../services/inventory-services.js';
+import { startGame } from '../game/start-game.js';
 
 // Get 'game-screen' div
 const game_screen = getElemById('game-screen');
@@ -53,7 +55,6 @@ export function setNewGamePage() {
         // Debug
         log("info", `\nGamerTag: ${gamertag.value}\nFirstname: ${firstname.value}\nLastname: ${lastname.value}\n`);
 
-
         // Create player datas for local storage
         const player_data = {          
             player: {
@@ -72,6 +73,8 @@ export function setNewGamePage() {
         // Save de player data into local storage
         setPlayerData(player_data);
         setDefaultPlayerInventory();
+
+        startGame();
 
     });
 

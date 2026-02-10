@@ -2,7 +2,7 @@ import { setLanguagePage, getSavedLanguage } from './modules/pages/language.js';
 import { locale } from './modules/locales/locales.js';
 import { setMainMenu } from './modules/pages/main-menu.js';
 import { toggleTheme } from './modules/wrappers/theme.js';
-import { log } from './modules/wrappers/wrappers.js';
+
 
 export let config = {};
 
@@ -28,6 +28,3 @@ if (lang) {
 } else {
     setLanguagePage();
 };
-
-// Log local storage
-log("info", localStorage);
