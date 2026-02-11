@@ -1,4 +1,4 @@
-import { getPlayerData } from '../services/player-service.js';
+import { getPlayerData, getPlayerIsDead } from '../services/player-service.js';
 import { getElemById } from '../wrappers/wrappers.js';
 import { changeStats } from '../services/player-service.js';
 
@@ -68,6 +68,14 @@ function showMap() {
 
 // --- PLACE PLAYER ---
 function placePlayer(x, y) {
+    const isdead = getPlayerIsDead();
+
+    if (isdead) {
+        const screen = getElemById('game-screen');
+        screen.innerHTML = `<h1>Ton personnage est mort!</h1>`;
+        return;
+    }
+
     const map = getElemById('map-grid');
     if (!map) return;
 
@@ -82,7 +90,6 @@ function placePlayer(x, y) {
 
     map.children[index].classList.add('player');
     savePlayerCoord(); // sauvegarde automatique
-    changeStats("decrease", "thirst", "1");
 }
 
 // --- GÉRER DÉPLACEMENTS ---
@@ -111,6 +118,7 @@ window.addEventListener('keydown', (event) => {
     if (moved) {
         placePlayer(playerPos.x, playerPos.y);
         lastMoveTime = now;
+        changeStats("decrease", "thirst", "1"); // maintenant exécuté seulement si le joueur bouge
     }
 });
 

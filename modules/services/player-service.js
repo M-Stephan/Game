@@ -51,6 +51,8 @@ export function getPlayerInfo(info) {
             return stats.hp;
         case "level":
             return stats.level;
+        case "isdead":
+            return stats.isdead;
         case "full-stats":
             return `Hunger: ${stats.hunger}\n Thirst: ${stats.thirst}\n HP: ${stats.hp}\n Level: ${stats.level}`;
         default:
@@ -82,12 +84,24 @@ function amountVerify(info_value, amount, type_change) {
     };
 };
 
+export function getPlayerIsDead() {
+    return getPlayerInfo("isdead");
+}
+
 export function changeStats(type, stats, amount) {
     let new_hunger = getPlayerInfo("hunger");
     let new_thirst = getPlayerInfo("thirst");
     let new_hp = getPlayerInfo("hp");
     let new_level = getPlayerInfo("level");
+    let new_isdead = getPlayerInfo("isdead");
 
+    if (new_thirst === 0 || new_hunger === 0 ) {
+        stats = "hp";
+    };
+
+    if (new_hp === 0) {
+        stats = "isdead";
+    }
 
     switch (stats) {
         case "hunger":
@@ -101,6 +115,9 @@ export function changeStats(type, stats, amount) {
             break;
         case "level":
             new_level = amountVerify(new_level, amount, type)
+            break;
+        case "isdead":
+            new_isdead = true;
             break;
         default:
             log("error", `Stats: ${stats} does not exists`);
@@ -117,7 +134,8 @@ export function changeStats(type, stats, amount) {
             hunger: new_hunger,
             thirst: new_thirst,
             hp: new_hp,
-            level: new_level
+            level: new_level,
+            isdead: new_isdead
         }          
     };
 

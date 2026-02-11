@@ -66,7 +66,8 @@ export function setNewGamePage() {
                 hunger: 100,
                 thirst: 100,
                 hp: 100,
-                level: 1
+                level: 1,
+                isdead: false
             }          
         };
 
