@@ -79,7 +79,7 @@ export function setNewGamePage() {
 
     });
 
-    // Evet to return to the main menu page
+    // Event to return to the main menu page
     return_btn.addEventListener("click", function() {
         setMainMenu();
     });

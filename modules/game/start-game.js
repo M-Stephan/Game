@@ -1,7 +1,7 @@
 import { getPlayerData, getPlayerIsDead } from '../services/player-service.js';
 import { getElemById } from '../wrappers/wrappers.js';
 import { changeStats } from '../services/player-service.js';
-import { showPlayerInventory } from './player-inventory.js';
+import { refreshPlayerInventory } from './player-inventory.js';
 
 let intervalId = null;
 
@@ -16,14 +16,19 @@ let walls = JSON.parse(localStorage.getItem('walls')) || [];
 
 // --- START GAME ---
 export function startGame() {
-    document.body.classList.add('game-started');
+    document.body.classList.add('new-game'); // <-- ajoute la classe
 
     showLifeBar();
-    showPlayerInventory();
+    refreshPlayerInventory();
     showMap();
     restoreWalls();
-    placePlayer(playerPos.x, playerPos.y);
-    document.activeElement?.blur();
+    placePlayer(playerPos.x, playerPos.y);    
+    
+    const header = getElemById('header');
+    if (header) {
+        header.tabIndex = -1;  // rendre focusable
+        header.focus();         // focus dessus
+    }
 };
 
 
@@ -76,7 +81,7 @@ function showMap() {
 }
 
 // --- PLACE PLAYER ---
-function placePlayer(x, y) {
+export function placePlayer(x, y) {
     const isdead = getPlayerIsDead();
 
     if (isdead) {
@@ -155,21 +160,21 @@ export function deleteWall(x, y) {
 }
 
 // --- HELPERS WALL ---
-function drawWall(x, y) {
+export function drawWall(x, y) {
     const map = getElemById('map-grid');
     const index = y * map_size_x + x;
     if (index < 0 || index >= map.children.length) return;
     map.children[index].classList.add('wall');
 }
 
-function removeWall(x, y) {
+export function removeWall(x, y) {
     const map = getElemById('map-grid');
     const index = y * map_size_x + x;
     if (index < 0 || index >= map.children.length) return;
     map.children[index].classList.remove('wall');
 }
 
-function restoreWalls() {
+export function restoreWalls() {
     walls.forEach(w => drawWall(w.x, w.y));
 }
 

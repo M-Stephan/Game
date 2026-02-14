@@ -88,22 +88,25 @@ export function getPlayerIsDead() {
     return getPlayerInfo("isdead");
 }
 
-export function changeStats(type, stats, amount) {
+export function changeStats(type, stat, amount, ignoreDeathLogic = false) {
     let new_hunger = getPlayerInfo("hunger");
     let new_thirst = getPlayerInfo("thirst");
     let new_hp = getPlayerInfo("hp");
     let new_level = getPlayerInfo("level");
     let new_isdead = getPlayerInfo("isdead");
 
-    if (new_thirst === 0 || new_hunger === 0 ) {
-        stats = "hp";
-    };
+    // ⚠️ seulement si on n'est pas en mode "item" : dégâts automatiques
+    if (!ignoreDeathLogic) {
+        if (new_thirst === 0 || new_hunger === 0) {
+            stat = "hp";
+        }
 
-    if (new_hp === 0) {
-        stats = "isdead";
+        if (new_hp === 0) {
+            stat = "isdead";
+        }
     }
 
-    switch (stats) {
+    switch (stat) {
         case "hunger":
             new_hunger = amountVerify(new_hunger, amount, type);
             break;
@@ -114,17 +117,17 @@ export function changeStats(type, stats, amount) {
             new_hp = amountVerify(new_hp, amount, type);
             break;
         case "level":
-            new_level = amountVerify(new_level, amount, type)
+            new_level = amountVerify(new_level, amount, type);
             break;
         case "isdead":
             new_isdead = true;
             break;
         default:
-            log("error", `Stats: ${stats} does not exists`);
-            throw new Error(`Stats: ${stats} does not exists`);
+            log("error", `Stats: ${stat} does not exist`);
+            throw new Error(`Stats: ${stat} does not exist`);
     }
 
-    const new_player_data = {          
+    const new_player_data = {
         player: {
             gamertag: getPlayerInfo("gamertag"),
             firstname: getPlayerInfo("firstname"),
@@ -136,11 +139,12 @@ export function changeStats(type, stats, amount) {
             hp: new_hp,
             level: new_level,
             isdead: new_isdead
-        }          
+        }
     };
 
     setPlayerData(new_player_data);
 }
+
 
 // Increase 1 level
 export function levelUp() {
