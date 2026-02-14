@@ -12,7 +12,7 @@ export const existing_items = {
 
     "bread": {
         label: "Pain",
-        type: "drink",
+        type: "food",
         consume: true,
         stack: true
     },
@@ -33,14 +33,14 @@ export const existing_items = {
 
     "pickaxe": {
         label: "Pioche",
-        type: "item",
+        type: "tools",
         consume: false,
         stack: false
     },
 
     "hache": {
         label: "Hache",
-        type: "item",
+        type: "tools",
         consume: false,
         stack: false
     },
@@ -133,6 +133,10 @@ export function useItem(itemKey, quantity) {
             if (item.consume) removeInventoryItem(itemKey, quantity);
             if (itemKey === "medicine_kit") changeStats("increase", "hp", 50, true);
             else if (itemKey === "bandage") changeStats("increase", "hp", 25, true);
+            break;
+        case "tools":
+            // utiliser un outil fait perdre 1 de faim
+            changeStats("decrease", "hunger", 1, true);
             break;
         case "drink":
             if (item.consume) removeInventoryItem(itemKey, quantity);
