@@ -1,5 +1,6 @@
 import { removeInventoryItem } from "../services/inventory-services.js";
 import { changeStats } from "../services/player-service.js";
+import { playerCutTree } from "../services/threes-service.js";
 
 export const existing_items = {
 
@@ -40,7 +41,7 @@ export const existing_items = {
 
     "hache": {
         label: "Hache",
-        type: "tools",
+        type: "hache",
         consume: false,
         stack: false
     },
@@ -133,6 +134,10 @@ export function useItem(itemKey, quantity) {
             if (item.consume) removeInventoryItem(itemKey, quantity);
             if (itemKey === "medicine_kit") changeStats("increase", "hp", 50, true);
             else if (itemKey === "bandage") changeStats("increase", "hp", 25, true);
+            break;
+        case "hache":
+            // utiliser un outil fait perdre 1 de faim
+            changeStats("decrease", "hunger", 1, true);
             break;
         case "tools":
             // utiliser un outil fait perdre 1 de faim

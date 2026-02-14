@@ -2,6 +2,7 @@ import { getPlayerData, getPlayerIsDead } from '../services/player-service.js';
 import { getElemById } from '../wrappers/wrappers.js';
 import { changeStats } from '../services/player-service.js';
 import { refreshPlayerInventory } from './player-inventory.js';
+import { spawnRandomTrees, isTreeAt } from '../services/threes-service.js';
 
 let intervalId = null;
 
@@ -19,15 +20,18 @@ export function startGame() {
     document.body.classList.add('new-game'); // <-- ajoute la classe
 
     showLifeBar();
-    refreshPlayerInventory();
-    showMap();
-    restoreWalls();
-    placePlayer(playerPos.x, playerPos.y);    
+    showMap();             // construit la map
+    restoreWalls();        // restore murs
+    placePlayer(playerPos.x, playerPos.y);  
+    refreshPlayerInventory();  
+
+    // Spawn arbres juste après que la map soit prête
+    setTimeout(() => spawnRandomTrees(), 50); // léger délai pour s'assurer que DOM est prêt
     
     const header = getElemById('header');
     if (header) {
-        header.tabIndex = -1;  // rendre focusable
-        header.focus();         // focus dessus
+        header.tabIndex = -1;
+        header.focus();
     }
 };
 
@@ -70,7 +74,7 @@ function updateLifeBar() {
 // --- MAP ---
 function showMap() {
     const screen = getElemById('game-screen');
-    screen.innerHTML = `<div id="map-grid"></div>`;
+    screen.innerHTML = `<div class="map_scroll"><div id="map-grid"></div></div>`;
     const map = getElemById('map-grid');
 
     for (let i = 0; i < map_size_x * map_size_y; i++) {
@@ -180,5 +184,5 @@ export function restoreWalls() {
 
 // Vérifie s'il y a un mur à la position
 function isWall(x, y) {
-    return walls.some(w => w.x === x && w.y === y);
+    return walls.some(w => w.x === x && w.y === y) || isTreeAt({ x, y });
 }

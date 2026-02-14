@@ -176,5 +176,16 @@ body.new-game footer {
 
 body.new-game #player-inventory {
   position: relative;
-  bottom: 700px;
 }
+
+.map_scroll {
+  max-height: 700px;
+  overflow: auto;
+  background-color: transparent;
+}
+
+.map-cell.tree {
+    background-color: #8B4513; /* brun bois */
+    border-radius: 4px; /* optionnel, pour un peu de rondeur */
+}
+
