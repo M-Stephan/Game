@@ -3,7 +3,7 @@ import { getPlayerInventory } from "../services/inventory-services.js";
 import { log } from "../wrappers/log.js";
 import { getItemName, useItem } from "../data/items.js"; // ta fonction useItem robuste
 import { playerCutTree } from "../services/threes-service.js";
-export function refreshPlayerInventory() {
+export function showPlayerInventory() {
     log('success', 'refresh player inventory page has been loaded')
     let player_inventory = getPlayerInventory().inventory;
     let inventory_content = getElemById("player-inventory");
@@ -40,20 +40,18 @@ export function refreshPlayerInventory() {
 
     slots.forEach(slotId => {
         const slotBtn = getElemById(slotId);
-            slotBtn.addEventListener("click", function() {
-        const itemKey = player_inventory[slotId].item;
-        const quantity = 1;
-        if (!itemKey || itemKey === "empty") return;
-
-        if(itemKey === "hache") {
-            // coup sur l'arbre autour du joueur
-            playerCutTree();
-        } else {
-            useItem(itemKey, quantity);
-        }
-
-        refreshPlayerInventory();
-    });
+        slotBtn.addEventListener("click", function() {
+            const itemKey = player_inventory[slotId].item;
+            const quantity = 1;
+            if (!itemKey || itemKey === "empty") return;
+            if(itemKey === "hache") {
+                // coup sur l'arbre autour du joueur
+                playerCutTree();
+            } else {
+                useItem(itemKey, quantity);
+            }
+            showPlayerInventory();
+        });
     });
 }
 

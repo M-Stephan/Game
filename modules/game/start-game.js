@@ -1,7 +1,7 @@
 import { getPlayerData, getPlayerIsDead } from '../services/player-service.js';
 import { getElemById } from '../wrappers/wrappers.js';
 import { changeStats } from '../services/player-service.js';
-import { refreshPlayerInventory } from './player-inventory.js';
+import { showPlayerInventory } from './player-inventory.js';
 import { spawnRandomTrees, isTreeAt } from '../services/threes-service.js';
 
 let intervalId = null;
@@ -23,7 +23,7 @@ export function startGame() {
     showMap();             // construit la map
     restoreWalls();        // restore murs
     placePlayer(playerPos.x, playerPos.y);  
-    refreshPlayerInventory();  
+    showPlayerInventory();  
 
     // Spawn arbres juste après que la map soit prête
     setTimeout(() => spawnRandomTrees(), 50); // léger délai pour s'assurer que DOM est prêt
