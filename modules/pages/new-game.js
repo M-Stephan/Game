@@ -14,7 +14,7 @@ const game_screen = getElemById('game-screen');
 export function setNewGamePage() {
     const language = getLanguage();
     // Debug
-    log("success", "New game page has been successfully loaDed");
+    log("success", "New game page has been successfully loaded");
 
     //  (need locales)
     // Fill the content into 'game-screen ' div

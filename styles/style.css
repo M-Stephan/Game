@@ -143,10 +143,10 @@ button:hover {
 #map-grid {
   display: grid;
   grid-template-columns: repeat(50, 1fr);
-  grid-template-rows: repeat(50, 1fr);
+  grid-template-rows: repeat(150, 1fr);
 
-  width: 800px;     /* modifiable */
-  height: 800px;    /* modifiable */
+  width: 700px;     /* modifiable */
+  height: 2100px;    /* modifiable */
 
   border: 2px solid #000;
   background-color: #32580d;
@@ -159,4 +159,20 @@ button:hover {
 .map-cell.player {
   background-color: #8552fc;
   border-radius: 50%;
+}
+
+.game-started {
+    user-select: none;
+}
+
+.game-started * {
+    user-select: none;
+    caret-color: transparent;
+}
+
+
+#player-inventory {
+  position: absolute;
+  left: 5%;
+  top: 10%;
 }

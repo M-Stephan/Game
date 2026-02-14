@@ -1,6 +1,7 @@
 import { getPlayerData, getPlayerIsDead } from '../services/player-service.js';
 import { getElemById } from '../wrappers/wrappers.js';
 import { changeStats } from '../services/player-service.js';
+import { showPlayerInventory } from './player-inventory.js';
 
 let intervalId = null;
 
@@ -8,18 +9,23 @@ let intervalId = null;
 let playerPos = { x: 10, y: 10 }; // position du joueur
 let lastMoveTime = 0; // Timestamp du dernier déplacement
 const moveDelay = 200; // délai en ms entre deux mouvements
-const mapSize = 50; // taille de la map
-
+const map_size_x = 50; // taille de la map
+const map_size_y = 150;
 // --- WALLS STORAGE ---
 let walls = JSON.parse(localStorage.getItem('walls')) || [];
 
 // --- START GAME ---
 export function startGame() {
+    document.body.classList.add('game-started');
+
     showLifeBar();
+    showPlayerInventory();
     showMap();
-    restoreWalls(); // restaure murs sauvegardés
+    restoreWalls();
     placePlayer(playerPos.x, playerPos.y);
-}
+    document.activeElement?.blur();
+};
+
 
 // --- LIFE BAR ---
 function showLifeBar() {
@@ -32,6 +38,9 @@ function showLifeBar() {
             <p class="hp"></p>
             <p class="level"></p>
         </div>
+        <div id="player-inventory">
+        </div>
+
     `;
 
     updateLifeBar();
@@ -59,7 +68,7 @@ function showMap() {
     screen.innerHTML = `<div id="map-grid"></div>`;
     const map = getElemById('map-grid');
 
-    for (let i = 0; i < mapSize * mapSize; i++) {
+    for (let i = 0; i < map_size_x * map_size_y; i++) {
         const cell = document.createElement('div');
         cell.classList.add('map-cell');
         map.appendChild(cell);
@@ -79,7 +88,7 @@ function placePlayer(x, y) {
     const map = getElemById('map-grid');
     if (!map) return;
 
-    const index = y * mapSize + x;
+    const index = y * map_size_x + x;
     if (index < 0 || index >= map.children.length) return;
 
     const old = map.querySelector('.player');
@@ -105,13 +114,13 @@ window.addEventListener('keydown', (event) => {
             if (playerPos.y > 0 && !isWall(playerPos.x, playerPos.y - 1)) { playerPos.y--; moved = true; }
             break;
         case 's': // down
-            if (playerPos.y < mapSize - 1 && !isWall(playerPos.x, playerPos.y + 1)) { playerPos.y++; moved = true; }
+            if (playerPos.y < map_size_y - 1 && !isWall(playerPos.x, playerPos.y + 1)) { playerPos.y++; moved = true; }
             break;
         case 'q': // left
             if (playerPos.x > 0 && !isWall(playerPos.x - 1, playerPos.y)) { playerPos.x--; moved = true; }
             break;
         case 'd': // right
-            if (playerPos.x < mapSize - 1 && !isWall(playerPos.x + 1, playerPos.y)) { playerPos.x++; moved = true; }
+            if (playerPos.x < map_size_x - 1 && !isWall(playerPos.x + 1, playerPos.y)) { playerPos.x++; moved = true; }
             break;
     }
 
@@ -148,14 +157,14 @@ export function deleteWall(x, y) {
 // --- HELPERS WALL ---
 function drawWall(x, y) {
     const map = getElemById('map-grid');
-    const index = y * mapSize + x;
+    const index = y * map_size_x + x;
     if (index < 0 || index >= map.children.length) return;
     map.children[index].classList.add('wall');
 }
 
 function removeWall(x, y) {
     const map = getElemById('map-grid');
-    const index = y * mapSize + x;
+    const index = y * map_size_x + x;
     if (index < 0 || index >= map.children.length) return;
     map.children[index].classList.remove('wall');
 }

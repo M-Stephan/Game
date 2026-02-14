@@ -78,6 +78,8 @@ game/
 |   |   ├─ crafts.js
 |   |   ├─ items.js
 |   |   └─ shops.js
+|   ├─ game/
+|   |   └─ start-game.js
 |   ├─ locales/
 |   |   └─ locales.js
 |   ├─ pages/
