@@ -1,6 +1,7 @@
 import { getPlayerCoord } from '../game/start-game.js';
 import { getElemById } from '../wrappers/wrappers.js';
-import { getInventoryItem, addInventoryItem } from '../services/inventory-services.js';
+import { addInventoryItem } from '../services/inventory-services.js';
+import { useItem } from '../data/items.js';
 
 let trees = []; // stocke les arbres avec { x, y, hits }
 const maxHits = 3;
@@ -58,6 +59,7 @@ setInterval(spawnRandomTrees, treeSpawnInterval);
 
 // --- PLAYER CUT TREE ---
 export function playerCutTree() {
+    
     const player = getPlayerCoord();
     const directions = [
         { x: 0, y: -1 }, // haut
@@ -72,7 +74,7 @@ export function playerCutTree() {
         if (!tree) continue;
 
         tree.hits++; // chaque coup incrémente le compteur
-        console.log(`Coup sur arbre (${coord.x}, ${coord.y}) => ${tree.hits} / ${maxHits}`);
+        useItem("hache", 1);
 
         if (tree.hits >= maxHits) {
             const quantity = Math.floor(Math.random() * 4) + 2; // 2 à 5 bois
@@ -80,7 +82,7 @@ export function playerCutTree() {
             deleteTree(coord);
         }
 
-        break; // ne coupe qu'un arbre à la fois
+        break;
     }
 }
 

@@ -1,7 +1,6 @@
 import { removeInventoryItem } from "../services/inventory-services.js";
 import { changeStats } from "../services/player-service.js";
-import { playerCutTree } from "../services/threes-service.js";
-
+import { log } from "../wrappers/log.js";
 export const existing_items = {
 
     "money": {
@@ -137,11 +136,11 @@ export function useItem(itemKey, quantity) {
             break;
         case "hache":
             // utiliser un outil fait perdre 1 de faim
-            changeStats("decrease", "hunger", 1, true);
+            changeStats("decrease", "hunger", 1, false);
             break;
         case "tools":
             // utiliser un outil fait perdre 1 de faim
-            changeStats("decrease", "hunger", 1, true);
+            changeStats("decrease", "hunger", 1, false);
             break;
         case "drink":
             if (item.consume) removeInventoryItem(itemKey, quantity);
@@ -152,5 +151,10 @@ export function useItem(itemKey, quantity) {
             changeStats("increase", "hunger", 25, true);
             break;
     }
+}
+
+export function getItemName(item_key) {
+    let item = existing_items[item_key];
+    return item.label;
 }
 

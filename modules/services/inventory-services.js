@@ -3,7 +3,7 @@ import { log } from "../wrappers/log.js";
 // Set default player inventory
 export function setDefaultPlayerInventory() {
     let default_player_inventory = {
-        slots: 10,
+        slots: 20,
         inventory: {
             slot0: { item: "bread", quantity: 2 },
             slot1: { item: "water", quantity: 2 },
@@ -14,7 +14,17 @@ export function setDefaultPlayerInventory() {
             slot6: {},
             slot7: {},
             slot8: {},
-            slot9: {}
+            slot9: {},
+            slot10: {},
+            slot11: {},
+            slot12: {},
+            slot13: {},
+            slot14: {},
+            slot15: {},
+            slot16: {},
+            slot17: {},
+            slot18: {},
+            slot19: {}
         }
     };
 
