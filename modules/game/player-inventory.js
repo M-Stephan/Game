@@ -1,12 +1,23 @@
 import { getElemById } from "../wrappers/wrappers.js";
 import { getPlayerInventory } from "../services/inventory-services.js";
 import { log } from "../wrappers/log.js";
-import { getItemName, useItem } from "../data/items.js"; // ta fonction useItem robuste
+import { getItemName, useItem } from "../data/items.js";
 import { playerCutTree } from "../services/threes-service.js";
-export function showPlayerInventory() {
+
+export function setGameSideBar() {
+    window.addEventListener('keydown', function(e) {
+        if (!e.key) return;
+
+        if (e.key.toLowerCase() === "i") {
+            showPlayerInventory();
+        }
+    })
+};
+
+function showPlayerInventory() {
     log('success', 'refresh player inventory page has been loaded')
     let player_inventory = getPlayerInventory().inventory;
-    let inventory_content = getElemById("player-inventory");
+    let inventory_content = getElemById("sidebar-content");
     function getInventoryItemName(item_name) {
         return item_name?getItemName(item_name):""
     }
@@ -52,6 +63,16 @@ export function showPlayerInventory() {
             }
             showPlayerInventory();
         });
+    });
+
+    window.addEventListener('keydown', function(e) {
+        if (!e.key) return;
+
+        if (e.key === "Esc" || e.key === "Escape" || e.key.toLowerCase() === "i") {
+            let inventory_content = getElemById("sidebar-content");
+            inventory_content.innerHTML = ``;
+            setGameSideBar();
+        }
     });
 }
 

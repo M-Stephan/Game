@@ -1,11 +1,13 @@
 import { getPlayerCoord } from '../game/start-game.js';
 import { getElemById } from '../wrappers/wrappers.js';
-import { addInventoryItem } from '../services/inventory-services.js';
+import { getInventoryItem, addInventoryItem } from '../services/inventory-services.js';
 import { useItem } from '../data/items.js';
 
-let trees = []; // stocke les arbres avec { x, y, hits }
-const maxHits = 3;
-const treeSpawnInterval = 2 * 60 * 1000; // 2 minutes
+let trees = []; // stock the trees with { x, y, hits }
+const maxHits = 3; // number of hits for cut trees
+const maxHandsHits = 6; 
+const treeSpawnInterval = 1 * 60 * 1000; // 2 minutes
+const spawnTreeNumbers = 15 // number max of trees
 
 // --- CREATE TREE ---
 export function createTree(coord) {
@@ -36,8 +38,8 @@ export function spawnRandomTrees() {
     const map = getElemById('map-grid');
     if (!map) return;
 
-    const target = 15; // nombre total d'arbres voulu
-    let toSpawn = target - trees.length; // spawn seulement ce qu'il manque
+    const target = spawnTreeNumbers;
+    let toSpawn = target - trees.length;
     if(toSpawn <= 0) return;
 
     let spawned = 0;
@@ -54,12 +56,16 @@ export function spawnRandomTrees() {
 }
 
 
-// auto spawn toutes les 2 minutes
+// --- AUTO SPAWN INTERVALS ---
 setInterval(spawnRandomTrees, treeSpawnInterval);
 
 // --- PLAYER CUT TREE ---
 export function playerCutTree() {
-    
+    const getPlayerHache = getInventoryItem('hache', 1)
+
+    if (!getPlayerHache) {
+       maxHits = maxHandsHits 
+    }
     const player = getPlayerCoord();
     const directions = [
         { x: 0, y: -1 }, // haut
@@ -74,7 +80,9 @@ export function playerCutTree() {
         if (!tree) continue;
 
         tree.hits++; // chaque coup incrémente le compteur
-        useItem("hache", 1);
+        if (getPlayerHache) {
+            useItem("hache", 1);
+        }
 
         if (tree.hits >= maxHits) {
             const quantity = Math.floor(Math.random() * 4) + 2; // 2 à 5 bois

@@ -14,6 +14,8 @@ config.debug = true;
 // Language by default
 config.defaultLanguage = locale.en; // Possible choices: locale.de, locale.es, locale.en, locale.fr
 
+config.spawnTreesNumber = 15;
+
 /*****************************************/
 
 // display the last theme or default (dark)

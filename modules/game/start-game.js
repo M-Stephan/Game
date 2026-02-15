@@ -1,7 +1,7 @@
 import { getPlayerData, getPlayerIsDead } from '../services/player-service.js';
 import { getElemById } from '../wrappers/wrappers.js';
 import { changeStats } from '../services/player-service.js';
-import { showPlayerInventory } from './player-inventory.js';
+import { setGameSideBar } from './player-inventory.js';
 import { spawnRandomTrees, isTreeAt } from '../services/threes-service.js';
 
 let intervalId = null;
@@ -19,11 +19,11 @@ let walls = JSON.parse(localStorage.getItem('walls')) || [];
 export function startGame() {
     document.body.classList.add('new-game'); // <-- ajoute la classe
 
-    showLifeBar();
+    showSideBar();
     showMap();             // construit la map
     restoreWalls();        // restore murs
     placePlayer(playerPos.x, playerPos.y);  
-    showPlayerInventory();  
+    setGameSideBar();  
 
     // Spawn arbres juste après que la map soit prête
     setTimeout(() => spawnRandomTrees(), 50); // léger délai pour s'assurer que DOM est prêt
@@ -37,7 +37,7 @@ export function startGame() {
 
 
 // --- LIFE BAR ---
-function showLifeBar() {
+function showSideBar() {
     const header = getElemById('header');
 
     header.innerHTML = `
@@ -47,7 +47,7 @@ function showLifeBar() {
             <p class="hp"></p>
             <p class="level"></p>
         </div>
-        <div id="player-inventory">
+        <div id="sidebar-content">
         </div>
 
     `;
